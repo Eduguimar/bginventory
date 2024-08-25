@@ -1,0 +1,13 @@
+package com.devedu.bginventory;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BgInventoryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BgInventoryApplication.class, args);
+	}
+
+}

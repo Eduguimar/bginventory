@@ -1,5 +1,6 @@
 package com.devedu.bginventory.domain.model;
 
+import com.devedu.bginventory.domain.controller.dto.BoardgameDTO;
 import jakarta.persistence.*;
 
 import java.util.*;
@@ -32,6 +33,16 @@ public class Boardgame {
         this.isExpansion = isExpansion;
         this.isStandalone = isStandalone;
         this.categories = categories;
+    }
+
+    public Boardgame(BoardgameDTO dto) {
+        this.id = dto.id();
+        this.name = dto.name();
+        this.description = dto.description();
+        this.year = dto.year();
+        this.isExpansion = dto.isExpansion();
+        this.isStandalone = dto.isStandalone();
+        this.categories = new ArrayList<>();
     }
 
     public Long getId() {

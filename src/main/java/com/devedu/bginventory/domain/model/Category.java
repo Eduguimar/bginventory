@@ -1,5 +1,6 @@
 package com.devedu.bginventory.domain.model;
 
+import com.devedu.bginventory.domain.controller.dto.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,12 @@ public class Category {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Category(CategoryDTO dto) {
+        this.id = dto.id();
+        this.name = dto.name();
+        this.description = dto.description();
     }
 
     public Long getId() {

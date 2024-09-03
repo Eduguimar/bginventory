@@ -1,12 +1,12 @@
-package com.devedu.bginventory.domain.service.impl;
+package com.devedu.bginventory.service.impl;
 
-import com.devedu.bginventory.domain.controller.dto.BoardgameDTO;
-import com.devedu.bginventory.domain.controller.dto.CategoryDTO;
+import com.devedu.bginventory.controller.dto.BoardgameDTO;
+import com.devedu.bginventory.controller.dto.CategoryDTO;
 import com.devedu.bginventory.domain.model.Boardgame;
 import com.devedu.bginventory.domain.model.Category;
 import com.devedu.bginventory.domain.repository.BoardgameRepository;
 import com.devedu.bginventory.domain.repository.CategoryRepository;
-import com.devedu.bginventory.domain.service.BoardgameService;
+import com.devedu.bginventory.service.BoardgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

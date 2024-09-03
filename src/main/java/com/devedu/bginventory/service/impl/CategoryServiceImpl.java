@@ -1,9 +1,9 @@
-package com.devedu.bginventory.domain.service.impl;
+package com.devedu.bginventory.service.impl;
 
-import com.devedu.bginventory.domain.controller.dto.CategoryDTO;
+import com.devedu.bginventory.controller.dto.CategoryDTO;
 import com.devedu.bginventory.domain.model.Category;
 import com.devedu.bginventory.domain.repository.CategoryRepository;
-import com.devedu.bginventory.domain.service.CategoryService;
+import com.devedu.bginventory.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

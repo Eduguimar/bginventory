@@ -1,7 +1,7 @@
-package com.devedu.bginventory.domain.controller;
+package com.devedu.bginventory.controller;
 
-import com.devedu.bginventory.domain.controller.dto.BoardgameDTO;
-import com.devedu.bginventory.domain.service.BoardgameService;
+import com.devedu.bginventory.controller.dto.BoardgameDTO;
+import com.devedu.bginventory.service.BoardgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

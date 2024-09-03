@@ -1,4 +1,4 @@
-package com.devedu.bginventory.domain.controller.dto;
+package com.devedu.bginventory.controller.dto;
 
 import com.devedu.bginventory.domain.model.Category;
 

@@ -1,6 +1,6 @@
 package com.devedu.bginventory.domain.model;
 
-import com.devedu.bginventory.domain.controller.dto.CategoryDTO;
+import com.devedu.bginventory.controller.dto.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,6 +1,6 @@
 package com.devedu.bginventory.domain.model;
 
-import com.devedu.bginventory.domain.controller.dto.BoardgameDTO;
+import com.devedu.bginventory.controller.dto.BoardgameDTO;
 import jakarta.persistence.*;
 
 import java.util.*;

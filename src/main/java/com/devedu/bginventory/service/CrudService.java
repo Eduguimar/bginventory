@@ -1,4 +1,4 @@
-package com.devedu.bginventory.domain.service;
+package com.devedu.bginventory.service;
 
 import java.util.List;
 

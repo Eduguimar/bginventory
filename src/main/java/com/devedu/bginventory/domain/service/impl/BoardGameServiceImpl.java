@@ -1,14 +1,17 @@
 package com.devedu.bginventory.domain.service.impl;
 
 import com.devedu.bginventory.domain.controller.dto.BoardgameDTO;
+import com.devedu.bginventory.domain.controller.dto.CategoryDTO;
 import com.devedu.bginventory.domain.model.Boardgame;
 import com.devedu.bginventory.domain.model.Category;
 import com.devedu.bginventory.domain.repository.BoardgameRepository;
+import com.devedu.bginventory.domain.repository.CategoryRepository;
 import com.devedu.bginventory.domain.service.BoardgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,6 +20,9 @@ public class BoardGameServiceImpl implements BoardgameService {
 
     @Autowired
     private BoardgameRepository boardgameRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -36,7 +42,8 @@ public class BoardGameServiceImpl implements BoardgameService {
     @Transactional
     public BoardgameDTO create(BoardgameDTO bgdto) {
         var bg = new Boardgame(bgdto);
-        bg.setCategories(bgdto.categories().stream().map(Category::new).toList());
+
+        mapDtoToEntity(bgdto, bg);
 
         var createdBoardgame = boardgameRepository.save(bg);
         return new BoardgameDTO(createdBoardgame);
@@ -48,10 +55,11 @@ public class BoardGameServiceImpl implements BoardgameService {
         var bg = boardgameRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Boardgame not found"));
         bg.setName(bgdto.name());
         bg.setDescription(bgdto.description());
-        bg.setYear(bgdto.year());
+        bg.setReleaseYear(bgdto.releaseYear());
         bg.setExpansion(bgdto.isExpansion());
         bg.setStandalone(bgdto.isStandalone());
-        bg.setCategories(bgdto.categories().stream().map(Category::new).toList());
+
+        mapDtoToEntity(bgdto, bg);
 
         var createdBoardgame = boardgameRepository.save(bg);
         return new BoardgameDTO(createdBoardgame);
@@ -61,5 +69,15 @@ public class BoardGameServiceImpl implements BoardgameService {
     @Transactional
     public void delete(Long id) {
         boardgameRepository.deleteById(id);
+    }
+
+    private void mapDtoToEntity(BoardgameDTO bgdto, Boardgame bg) {
+        List<Category> categories = new ArrayList<>();
+        for (CategoryDTO categoryDTO : bgdto.categories()) {
+            var category = categoryRepository.findById(categoryDTO.id()).orElseThrow(() -> new NoSuchElementException("Category not found"));
+            categories.add(category);
+        }
+        bg.setCategories(categories);
+
     }
 }

@@ -13,7 +13,7 @@ public class Boardgame {
     Long id;
     String name;
     String description;
-    Integer year;
+    Integer releaseYear;
     boolean isExpansion;
     boolean isStandalone;
 
@@ -25,11 +25,11 @@ public class Boardgame {
 
     public Boardgame() {}
 
-    public Boardgame(Long id, String name, String description, Integer year, boolean isExpansion, boolean isStandalone, List<Category> categories) {
+    public Boardgame(Long id, String name, String description, Integer releaseYear, boolean isExpansion, boolean isStandalone, List<Category> categories) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.year = year;
+        this.releaseYear = releaseYear;
         this.isExpansion = isExpansion;
         this.isStandalone = isStandalone;
         this.categories = categories;
@@ -39,7 +39,7 @@ public class Boardgame {
         this.id = dto.id();
         this.name = dto.name();
         this.description = dto.description();
-        this.year = dto.year();
+        this.releaseYear = dto.releaseYear();
         this.isExpansion = dto.isExpansion();
         this.isStandalone = dto.isStandalone();
         this.categories = new ArrayList<>();
@@ -69,12 +69,12 @@ public class Boardgame {
         this.description = description;
     }
 
-    public Integer getYear() {
-        return year;
+    public Integer getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setReleaseYear(Integer year) {
+        this.releaseYear = year;
     }
 
     public boolean isExpansion() {

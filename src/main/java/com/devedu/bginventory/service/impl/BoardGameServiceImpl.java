@@ -7,7 +7,11 @@ import com.devedu.bginventory.domain.model.Category;
 import com.devedu.bginventory.domain.repository.BoardgameRepository;
 import com.devedu.bginventory.domain.repository.CategoryRepository;
 import com.devedu.bginventory.service.BoardgameService;
+import com.devedu.bginventory.service.exception.BusinessException;
+import com.devedu.bginventory.service.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +37,7 @@ public class BoardGameServiceImpl implements BoardgameService {
     @Override
     @Transactional(readOnly = true)
     public BoardgameDTO findById(Long id) {
-        var bg = boardgameRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Boardgame not found"));
+        var bg = boardgameRepository.findById(id).orElseThrow(NotFoundException::new);
 
         return new BoardgameDTO(bg);
     }
@@ -52,7 +56,7 @@ public class BoardGameServiceImpl implements BoardgameService {
     @Override
     @Transactional
     public BoardgameDTO update(Long id, BoardgameDTO bgdto) {
-        var bg = boardgameRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Boardgame not found"));
+        var bg = boardgameRepository.findById(id).orElseThrow(NotFoundException::new);
         bg.setName(bgdto.name());
         bg.setDescription(bgdto.description());
         bg.setReleaseYear(bgdto.releaseYear());
@@ -68,7 +72,13 @@ public class BoardGameServiceImpl implements BoardgameService {
     @Override
     @Transactional
     public void delete(Long id) {
-        boardgameRepository.deleteById(id);
+        try {
+            boardgameRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new NoSuchElementException();
+        } catch (DataIntegrityViolationException e) {
+            throw new BusinessException("Integrity violation");
+        }
     }
 
     private void mapDtoToEntity(BoardgameDTO bgdto, Boardgame bg) {

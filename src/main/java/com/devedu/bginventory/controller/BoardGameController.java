@@ -2,6 +2,7 @@ package com.devedu.bginventory.controller;
 
 import com.devedu.bginventory.controller.dto.BoardgameDTO;
 import com.devedu.bginventory.service.BoardgameService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Boardgames", description = "Boardgames")
 @RestController
 @RequestMapping(value = "/boardgames")
 public class BoardGameController {
